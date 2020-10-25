@@ -9,7 +9,12 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Build.json", {onProgress: UnityProgress});
+      var unityInstance;
+      navigator.mediaDevices.getUserMedia({video:true}).then(() => {
+        unityInstance = UnityLoader.instantiate("unityContainer", "Build/Build.json", {onProgress: UnityProgress});
+      }).catch(() => {
+        alert('Allow access to the camera device.');
+      });
     </script>
   </head>
   <body>
